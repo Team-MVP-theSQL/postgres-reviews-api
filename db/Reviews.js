@@ -1,12 +1,9 @@
 let mongoose = require('mongoose');
 
 let reviewsSchema = new mongoose.Schema({
-  shoeName: String,
+  shoeId: Number,
   nickname: String,
   location: String,
-  email: String,
-  ageRange: String,
-  gender: String,
   title: String,
   body: String,
   photos: [{type: String}],
@@ -17,8 +14,6 @@ let reviewsSchema = new mongoose.Schema({
   qualityRating: Number,
   valueRating: Number,
   timeCreated: String,
-  votes: Number,
-  helpful: Boolean
 });
 
 let Reviews = mongoose.model('Reviews', reviewsSchema);

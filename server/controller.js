@@ -2,17 +2,24 @@ let Reviews = require('../db/Reviews.js');
 let db = require('../db/');
 
 let controller = {
-  get: (req, res) => {
+  getAll: (req, res) => {
     Reviews.find({})
       .then((data) => {
-        const index = Math.floor(Math.random() * data.length)
-        res.status(200).send(data[index]);
+        res.status(200).send(data);
       })
       .catch((err) => {
         res.status(400).send(err);
       });
   },
-
+  deleteAll: (req, res) => {
+    Reviews.deleteMany({})
+      .then(() => {
+        res.status(200).send('Deleted all entries');
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  },
   post: (req, res) => {
     Reviews.create(req.body)
       .then(() => {
@@ -22,11 +29,28 @@ let controller = {
         res.status(400).send(err);
       });
   },
-
-  delete: (req, res) => {
-    Reviews.deleteMany({})
+  getShoeReviews: (req, res) => {
+    Reviews.find({ shoeId: req.params.shoeId })
+      .then((data) => {
+        res.status(200).send(data);
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  },
+  put: (req, res) => {
+    Reviews.updateOne({ _id: req.params.id }, req.body )
       .then(() => {
-        res.status(200).send('Deleted all entries');
+        res.status(200).send('Entry updated')
+      })
+      .catch((err) => {
+        res.status(500).send(err);
+      })
+  },
+  deleteOne: (req, res) => {
+    Reviews.deleteOne({ _id: req.params.id })
+      .then(() => {
+        res.status(200).send('Deleted entry');
       })
       .catch((err) => {
         res.status(400).send(err);
