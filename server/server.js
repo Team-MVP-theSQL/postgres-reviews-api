@@ -13,5 +13,3 @@ app.use(cors());
 app.use('/api', router);
 
 module.exports = app;
-
-

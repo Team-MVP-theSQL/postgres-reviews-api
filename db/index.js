@@ -1,10 +1,16 @@
-let mongoose = require('mongoose');
-let mongoUri = 'mongodb://localhost/reviews';
-mongoose.promise = global.Promise;
+const { Sequelize } = require('sequelize');
+const db = new Sequelize('postgresreviews', 'geflores', '1503', {
+  host: 'localhost',
+  dialect: 'postgres',
+  'logging': false,
+});
 
-var db = mongoose.connect(mongoUri, { useUnifiedTopology: true, useNewUrlParser: true })
+db.authenticate()
   .then(() => {
-    console.log('Database connected');
+    console.log('Connected to postgres');
+  })
+  .catch((err) => {
+    console.error(err);
   });
 
 module.exports = db;

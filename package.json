@@ -2,7 +2,7 @@
   "name": "details-reviews-module",
   "version": "1.0.0",
   "description": "details and reviews",
-  "author": "Kiwi Bui",
+  "author": "Giovanni Flores",
   "license": "",
   "main": "server/index.js",
   "engines": {
@@ -10,18 +10,21 @@
   },
   "scripts": {
     "start": "nodemon server/index.js",
-    "seed": "node db/seed.js"
+    "seed": "node --max-old-space-size=40000 db/seed.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "faker": "^5.1.0",
-    "mongoose": "^5.10.15"
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
+    "sequelize": "^6.3.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6",
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
+    "fast-csv": "^4.3.5",
     "morgan": "^1.10.0",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "nodemon": "^2.0.6"
   }
 }

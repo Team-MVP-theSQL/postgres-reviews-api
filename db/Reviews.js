@@ -1,21 +1,50 @@
-let mongoose = require('mongoose');
+const { Sequelize, DataTypes, Model } = require('sequelize');
+const db = require('./index');
 
-let reviewsSchema = new mongoose.Schema({
-  shoeId: Number,
-  nickname: String,
-  location: String,
-  title: String,
-  body: String,
-  photos: [{type: String}],
-  pros: [{type: String}],
-  cons: [{type: String}],
-  recommended: Boolean,
-  overallRating: Number,
-  qualityRating: Number,
-  valueRating: Number,
-  timeCreated: String,
-});
+const Review = db.define('review', {
+  shoeid: {
+    type: DataTypes.INTEGER
+  },
+  nickname: {
+    type: DataTypes.STRING
+  },
+  location: {
+    type: DataTypes.STRING
+  },
+  title: {
+    type: DataTypes.STRING
+  },
+  body: {
+    type: DataTypes.STRING
+  },
+  photos: {
+    type: DataTypes.ARRAY(DataTypes.STRING)
+  },
+  pros: {
+    type: DataTypes.ARRAY(DataTypes.STRING)
+  },
+  cons: {
+    type: DataTypes.ARRAY(DataTypes.STRING)
+  },
+  recommended: {
+    type: DataTypes.BOOLEAN
+  },
+  overallrating: {
+    type: DataTypes.FLOAT(11)
+  },
+  qualityrating: {
+    type: DataTypes.FLOAT(11)
+  },
+  valuerating: {
+    type: DataTypes.FLOAT(11)
+  },
+  timecreated: {
+    type: DataTypes.STRING
+  },
+}, {
+  timestamps: false
+}
 
-let Reviews = mongoose.model('Reviews', reviewsSchema);
+);
 
-module.exports = Reviews;
+module.exports = Review;
