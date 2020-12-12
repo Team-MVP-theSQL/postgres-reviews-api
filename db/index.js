@@ -1,6 +1,8 @@
 const { Sequelize } = require('sequelize');
-const db = new Sequelize('postgresreviews', 'geflores', '1503', {
-  host: 'localhost',
+
+const db = new Sequelize('postgresreviews', 'ec2-user', '1234', {
+  host: '18.222.175.144',
+  port: 5432,
   dialect: 'postgres',
   'logging': false,
 });

@@ -20,15 +20,15 @@ const controller = {
         res.status(400).send(err);
       });
   },
-  // post: (req, res) => {
-  //   Review.create(req.body)
-  //     .then(() => {
-  //       res.status(200).send('Entry posted');
-  //     })
-  //     .catch((err) => {
-  //       res.status(400).send(err);
-  //     });
-  // },
+  post: (req, res) => {
+    Review.create(req.body)
+      .then(() => {
+        res.status(200).send('Entry posted');
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  },
   getShoeReviews: (req, res) => {
     Review.findAll({ where: { shoeid: req.params.shoeid } })
       .then((data) => {
@@ -47,24 +47,24 @@ const controller = {
         res.status(400).send(err);
       });
   },
-  // put: (req, res) => {
-  //   Review.updateOne({ _id: req.params.id }, req.body )
-  //     .then(() => {
-  //       res.status(200).send('Entry updated');
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send(err);
-  //     });
-  // },
-  // deleteOne: (req, res) => {
-  //   Review.deleteOne({ _id: req.params.id })
-  //     .then(() => {
-  //       res.status(200).send('Deleted entry');
-  //     })
-  //     .catch((err) => {
-  //       res.status(400).send(err);
-  //     });
-  // }
+  put: (req, res) => {
+    Review.update( req.body, { where: { id: req.params.id } })
+      .then(() => {
+        res.status(200).send('Entry updated');
+      })
+      .catch((err) => {
+        res.status(500).send(err);
+      });
+  },
+  deleteOne: (req, res) => {
+    Review.destroy({ where: { id: req.params.id } })
+      .then(() => {
+        res.status(200).send('Deleted entry');
+      })
+      .catch((err) => {
+        res.status(400).send(err);
+      });
+  }
 };
 
 module.exports = controller;

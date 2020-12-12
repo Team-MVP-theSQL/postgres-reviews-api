@@ -8,7 +8,7 @@ CREATE DATABASE postgresreviews;
 
 CREATE TABLE reviews (
   id SERIAL PRIMARY KEY,
-  shoeid integer,
+  shoeid INTEGER,
   nickname VARCHAR(255),
   location VARCHAR(255),
   title VARCHAR(255),
