@@ -1,8 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('../db');
-require('newrelic');
 const router = require('./router.js');
 
 const app = express();
